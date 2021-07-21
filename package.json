@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack_conf/webpack.prod.js",
+    "start": "node index.mjs",
+    "watch": "nodemon index.mjs",
+    "setup": "npx sequelize db:migrate && npx sequelize db:seed:all",
+    "reset": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -19,6 +24,7 @@
   "homepage": "https://github.com/rocketacademy/react-hotpot-swe1#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",

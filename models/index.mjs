@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 import url from 'url';
 import allConfig from '../config/config.js';
+import billModel from './bill.mjs';
+import personModel from './person.mjs';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -29,6 +31,13 @@ if (env === 'production') {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+
+db.Bill = billModel(sequelize, Sequelize.DataTypes);
+db.Person = personModel(sequelize, Sequelize.DataTypes);
+
+// One-to-many-relationship
+db.Person.belongsTo(db.Bill);
+db.Bill.hasMany(db.Person);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
