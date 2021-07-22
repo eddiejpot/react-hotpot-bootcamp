@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import OneInput from './OneInput.jsx';
 import AddItem from './AddItem.jsx';
 
-export default function EditItems({ groupArray, setItemsArray }) {
+export default function Items({ groupArray, setItemsArray }) {
   // State
   const [itemNameLocal, setItemNameLocal] = useState('');
   const [itemPriceLocal, setItemPriceLocal] = useState('');

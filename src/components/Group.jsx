@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getCookie } from '../../utils/cookie.mjs';
 import checkIfStringContainsNumbers from '../../utils/checkIfStringContainsNumbers.mjs';
 
-export default function EditGroup({ groupArray, setGroupArray }) {
+export default function Group({ groupArray, setGroupArray }) {
   const [nameLocal, setNameLocal] = useState('');
 
   const checkName = (event) => {

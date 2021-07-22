@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateBill from './components/CreateBill.jsx';
-import EditGroup from './components/EditGroup.jsx';
-import EditItems from './components/EditItems.jsx';
+import Group from './components/Group.jsx';
+import Items from './components/Items.jsx';
 import ComputeBill from './components/ComputeBill.jsx';
 import { createCookie } from '../utils/cookie.mjs';
 
@@ -27,25 +27,25 @@ export default function App() {
 
   const showHideComponents = (componentName) => {
     // select parents of components
-    const editGroup = document.querySelector('.EditGroup');
-    const editItems = document.querySelector('.EditItems');
-    const computeBill = document.querySelector('.ComputeBill');
+    const groupElement = document.querySelector('.Group');
+    const itemsElement = document.querySelector('.Items');
+    const computeBillElement = document.querySelector('.ComputeBill');
 
     switch (componentName) {
-      case 'editGroup':
-        editGroup.classList.remove('hide-component');
-        editItems.classList.add('hide-component');
-        computeBill.classList.add('hide-component');
+      case 'Group':
+        groupElement.classList.remove('hide-component');
+        itemsElement.classList.add('hide-component');
+        computeBillElement.classList.add('hide-component');
         break;
-      case 'editItems':
-        editGroup.classList.add('hide-component');
-        editItems.classList.remove('hide-component');
-        computeBill.classList.add('hide-component');
+      case 'Items':
+        groupElement.classList.add('hide-component');
+        itemsElement.classList.remove('hide-component');
+        computeBillElement.classList.add('hide-component');
         break;
       case 'computeBill':
-        editGroup.classList.add('hide-component');
-        editItems.classList.add('hide-component');
-        computeBill.classList.remove('hide-component');
+        groupElement.classList.add('hide-component');
+        itemsElement.classList.add('hide-component');
+        computeBillElement.classList.remove('hide-component');
         break;
 
       default:
@@ -56,13 +56,13 @@ export default function App() {
   const MenuButtons = () => (
     <div className="container">
       <div className="row">
-        <div className="col Group">
-          <button type="button" onClick={() => showHideComponents('editGroup')}>Group Details</button>
+        <div className="col group-button">
+          <button type="button" onClick={() => showHideComponents('Group')}>Group Details</button>
         </div>
-        <div className="col Items">
-          <button type="button" onClick={() => showHideComponents('editItems')}>Items</button>
+        <div className="col items-button">
+          <button type="button" onClick={() => showHideComponents('Items')}>Items</button>
         </div>
-        <div className="col Bill">
+        <div className="col bill-button">
           <button type="button" onClick={() => showHideComponents('computeBill')}>Calculate Bill</button>
         </div>
       </div>
@@ -73,11 +73,11 @@ export default function App() {
     <div className="App">
       {showCreateBillComponent && <CreateBill createBill={createBill} />}
       {showCreateBillComponent || MenuButtons()}
-      <div className="EditGroup hide-component">
-        <EditGroup groupArray={groupArray} setGroupArray={setGroupArray} />
+      <div className="Group hide-component">
+        <Group groupArray={groupArray} setGroupArray={setGroupArray} />
       </div>
-      <div className="EditItems hide-component">
-        <EditItems groupArray={groupArray} setItemsArray={setItemsArray} />
+      <div className="Items hide-component">
+        <Items groupArray={groupArray} setItemsArray={setItemsArray} />
       </div>
       <div className="ComputeBill hide-component">
         <ComputeBill itemsArray={itemsArray} groupArray={groupArray} />
